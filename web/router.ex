@@ -14,9 +14,15 @@ defmodule Racelist.Router do
   end
 
   scope "/", Racelist do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :index
+  end
+
+  scope "/auth", Racelist do
+    pipe_through :browser
+
+    get "/:provider", SessionController, :request
   end
 
   # Other scopes may use custom stacks.

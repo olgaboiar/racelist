@@ -2,7 +2,7 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">RaceList</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#" class="waves-effect waves-light btn-small">Sign in with Google</a></li>
+        <li><a href="/auth/google?scope=email%20profile" class="waves-effect waves-light btn-small">Sign in with Google</a></li>
       </ul>
     </div>
   </nav>
