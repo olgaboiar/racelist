@@ -23,7 +23,14 @@ defmodule Racelist.Router do
     pipe_through :browser
 
     get "/:provider", SessionController, :request
+    get "/:provider/callback", SessionController, :create
   end
+
+#   scope "/races", Racelist do
+#     pipe_through :browser
+
+#     get "/new", RaceController, :new
+#   end
 
   # Other scopes may use custom stacks.
   # scope "/api", Racelist do
