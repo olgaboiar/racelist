@@ -52,6 +52,7 @@ defmodule Racelist.Web do
       import Racelist.Router.Helpers
       import Racelist.ErrorHelpers
       import Racelist.Gettext
+      alias Racelist.Router.Helpers, as: Routes
     end
   end
 

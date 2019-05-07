@@ -19,7 +19,7 @@ defmodule Racelist.Mixfile do
   def application do
     [mod: {Racelist, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :ueberauth, :ueberauth_google]]
   end
 
   # Specifies which paths to compile per environment.

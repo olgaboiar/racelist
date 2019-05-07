@@ -1,6 +1,6 @@
 defmodule Racelist.SessionController do
   use Racelist.Web, :controller
-  plug Ueberauth
+  plug(Ueberauth)
 
   alias Racelist.{Repo, User}
 
@@ -14,7 +14,7 @@ defmodule Racelist.SessionController do
     }
 
     changeset = User.changeset(%User{}, user_params)
-
+    # IO.inspect(changeset)
     case insert_or_update_user(changeset) do
       {:ok, user} ->
         conn
@@ -26,16 +26,22 @@ defmodule Racelist.SessionController do
         conn
         |> put_flash(:error, "Error signing in")
         |> redirect(to: Routes.page_path(conn, :index))
-      end
     end
+  end
+
+  def delete(conn, _params) do
+    conn
+    |> configure_session(drop: true)
+    |> redirect(to: Routes.page_path(conn, :index))
+  end
   
-    defp insert_or_update_user(changeset) do
-      case Repo.get_by(User, email: changeset.changes.email) do
-        nil ->
-          Repo.insert(changeset)
+  defp insert_or_update_user(changeset) do
+    case Repo.get_by(User, email: changeset.changes.email) do
+      nil ->
+        Repo.insert(changeset)
   
-          user ->
-            {:ok, user}
-      end
+      user ->
+        {:ok, user}
+    end
   end
 end
