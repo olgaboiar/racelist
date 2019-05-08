@@ -16,5 +16,9 @@ defmodule Racelist.NavigationTest do
     |> get("/")
         
     assert html_response(conn, 200) =~ "Sign out"
+    assert html_response(conn, 200) =~ "My races"
+    assert html_response(conn, 200) =~ "Friends"
+    assert html_response(conn, 200) =~ "Profile"
+    assert html_response(conn, 200) =~ "Calendar"
   end
 end

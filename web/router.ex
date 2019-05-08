@@ -28,11 +28,11 @@ defmodule Racelist.Router do
     get "/:provider/callback", SessionController, :create
   end
 
-#   scope "/races", Racelist do
-#     pipe_through :browser
+  scope "/races", Racelist do
+    pipe_through :browser
 
-#     get "/new", RaceController, :new
-#   end
+    resources "/", RaceController
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", Racelist do

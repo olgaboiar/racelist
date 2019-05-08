@@ -4,9 +4,9 @@
   </div>
   <%= if @conn.assigns[:user] do %>
     <div class="fixed-action-btn">
-    <%# <%= link to: topic_path(@conn, :new), class: "btn-floating btn-large waves-effect waves-light red"  do %>
-      <i class="material-icons">add race</i>
-    <%# <% end %> 
+      <%= link to: race_path(@conn, :new), class: "btn-floating btn-large waves-effect waves-light red"  do %>
+        <i class="material-icons">add race</i>
+      <% end %>
     </div>
   <% end %>
 </div>
