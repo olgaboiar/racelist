@@ -33,7 +33,7 @@ defmodule Racelist.Web do
       alias Racelist.Repo
       import Ecto
       import Ecto.Query
-
+    
       alias Racelist.Router.Helpers, as: Routes
       import Racelist.Gettext
     end

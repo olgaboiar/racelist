@@ -11,11 +11,5 @@ defmodule Racelist.RacepageTest do
       assert html_response(conn, 200) =~ "add race"
       assert html_response(conn, 200) =~ "My Races"
     end
-
-    test "shows the error message when user is not signed in", %{conn: conn} do
-      conn = get(conn, Routes.race_path(conn, :index))
-
-      assert html_response(conn, 200) =~ "My Races"
-    end
   
   end

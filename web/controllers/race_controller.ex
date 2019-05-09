@@ -2,6 +2,8 @@ defmodule Racelist.RaceController do
     use Racelist.Web, :controller
     alias Racelist.Race
 
+    plug Racelist.Plugs.RequireAuth
+    
     def new(conn, params) do
       changeset = Race.changeset(%Race{}, %{})
       render conn, "new.html", changeset: changeset
