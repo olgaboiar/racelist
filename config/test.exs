@@ -4,7 +4,7 @@ use Mix.Config
 # you can enable the server option below.
 config :racelist, Racelist.Endpoint,
   http: [port: 4001],
-  server: false
+  server: true
 
 # Print only warnings and errors during test
 config :logger, level: :warn
@@ -17,3 +17,7 @@ config :racelist, Racelist.Repo,
   database: "racelist_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :hound, driver: "selenium", browser: "chrome"
+
+config :racelist, sql_sandbox: true

@@ -1,6 +1,10 @@
 defmodule Racelist.Endpoint do
   use Phoenix.Endpoint, otp_app: :racelist
 
+  if Application.get_env(:racelistp, :sql_sandbox) do
+    plug Phoenix.Ecto.SQL.Sandbox
+  end
+
   socket "/socket", Racelist.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
