@@ -1,5 +1,12 @@
 <div>
   <h4>My Races</h4>
+  <ul clas="collection">
+  <%= for race <- @races do %>
+    <li class="collection-item">
+      <%= race.title %>
+    </li>
+  <% end %>
+</ul>
   <div class="fixed-action-btn">
     <%= link to: race_path(@conn, :new), class: "btn-floating btn-large waves-effect waves-light red"  do %>
       <i class="material-icons">add race</i>
