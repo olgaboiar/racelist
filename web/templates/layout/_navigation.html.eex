@@ -13,7 +13,7 @@
                 <li><span class="">Profile</span></li>
                 <li><%= link "Sign out", to: Routes.session_path(@conn, :delete), class: "waves-effect waves-light btn-small" %></li>
             <% else %>
-                <li><a href="/auth/google?scope=email%20profile" class="waves-effect waves-light btn-small">Sign in with Google</a></li>
+                <li><a href="/auth/google?scope=email%20profile" class="waves-effect waves-light btn-small" id="sign-in-link">Sign in with Google</a></li>
             <% end %>
       </ul>
     </div>
