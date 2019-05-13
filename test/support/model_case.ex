@@ -22,6 +22,7 @@ defmodule Racelist.ModelCase do
       import Ecto.Changeset
       import Ecto.Query
       import Racelist.ModelCase
+      import Racelist.TestHelpers
     end
   end
 

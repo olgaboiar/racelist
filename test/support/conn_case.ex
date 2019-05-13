@@ -26,6 +26,7 @@ defmodule Racelist.ConnCase do
       import Ecto.Query
 
       import Racelist.Router.Helpers
+      import Racelist.TestHelpers
 
       # The default endpoint for testing
       @endpoint Racelist.Endpoint
