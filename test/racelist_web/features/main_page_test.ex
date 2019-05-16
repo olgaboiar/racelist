@@ -4,33 +4,32 @@ defmodule HoundTest do
   use Hound.Helpers
   
   describe "main page" do
-    @tag :skip
+    
     test "homepage loads successfully", _meta do
       navigate_to("/")
       assert page_title() == "Hello Racelist!"
     end
   end
 
-  describe "registration" do
-    test "successfull registration", _meta do
+  describe "signing in" do
+    test "successfull signing in with Google", _meta do
       navigate_to("/")
     
       element = find_element(:id, "sign-in-link")
       element |> click()
       
       email = find_element(:xpath, "//input[@aria-label='Email or phone']")
-      email |> fill_field(System.get_env("GMAIL"))
+      email |> fill_field(System.get_env("TEST_GMAIL"))
 
       next_button = find_element(:xpath, ~s|//*[@id="identifierNext"]|)
       next_button |> click()
       
       password = find_element(:xpath, "//input[@aria-label='Enter your password']")
-      :timer.sleep(4000)
       password |> fill_field(System.get_env("TEST_GMAIL_PASSWORD"))
 
       submit = find_element(:xpath, ~s|//*[@id="passwordNext"]|)
       submit |> click()
-      :timer.sleep(3000)
+      _navigation = find_element(:xpath, ~s|//*[@id="nav-mobile"]|)
 
       assert current_url() == "http://localhost:4001/#"
       assert page_source() =~ "My races"

@@ -19,5 +19,6 @@ config :racelist, Racelist.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :hound, driver: "selenium", browser: "chrome"
+config :hound, retry_time: 1000
 
 config :racelist, sql_sandbox: true
