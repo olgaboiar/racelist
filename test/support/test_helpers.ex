@@ -65,4 +65,15 @@ defmodule Racelist.TestHelpers do
     submit_button = find_element(:xpath, "//button[@type='submit']")
     submit_button |> click()
   end
+
+  def edit_race() do
+    edit_button = find_element(:xpath, "//button[@class='edit-race']")
+    edit_button |> click()
+
+    race_title = find_element(:xpath, "//input[@id='race_title']")
+    race_title |> fill_field("NYC Marathon edited")
+
+    save_button = find_element(:xpath, "//button[@class='edit']")
+    save_button |> click()
+  end
 end

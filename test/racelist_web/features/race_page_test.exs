@@ -23,6 +23,21 @@ defmodule Racelist.RacePageTest do
         assert page_source() =~ "My races"
         assert page_source() =~ "NYC Marathon test"
       end
+      @tag :skip
+      test "successfully editing existing race", _meta do
+        navigate_to("/races")
+
+        Racelist.TestHelpers.sign_in_user()
+        Racelist.TestHelpers.add_race()
+        Racelist.TestHelpers.edit_race()
+
+        _race_list = find_element(:tag, "h4")
+
+        assert current_url() == "http://localhost:4001/races"
+        assert page_source() =~ "race updated"
+        assert page_source() =~ "My races"
+        assert page_source() =~ "NYC Marathon edited"
+      end
     end
   end
   
