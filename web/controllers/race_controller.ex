@@ -26,4 +26,25 @@ defmodule Racelist.RaceController do
       races = Repo.all(Race)
       render conn, "index.html", races: races
     end
+
+    def edit(conn, %{"id" => race_id}) do
+      race = Repo.get(Race, race_id)
+      changeset = Race.changeset(race)
+    
+      render conn, "edit.html", changeset: changeset, race: race
+    end
+
+    def update(conn, %{"id" => race_id, "race" => race}) do
+        old_race = Repo.get(Race, race_id)
+        changeset = Race.changeset(old_race, race)
+    
+        case Repo.update(changeset) do
+          {:ok, _race} -> 
+            conn
+            |> put_flash(:info, "Race updated")
+            |> redirect(to: Routes.race_path(conn, :index))
+          {:error, changeset} ->
+            render conn, "edit.html", changeset: changeset, race: old_race
+        end
+      end
   end

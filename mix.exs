@@ -40,7 +40,8 @@ defmodule Racelist.Mixfile do
      {:cowboy, "~> 1.0"},
      {:ueberauth, "~> 0.5"},
      {:ueberauth_google, "~> 0.7"},
-     {:poison, "~> 2.0"}]
+     {:poison, "~> 2.0"},
+     {:hound, "~> 1.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

@@ -1,9 +1,13 @@
 defmodule Racelist.RaceControllerTest do
   use Racelist.ConnCase
-  use Racelist.Web, :controller
+  alias Racelist.Router.Helpers, as: Routes
+#   use Racelist.Web, :controller
 
   alias Racelist.Race
-  
+
+  @create_attrs %{title: "LAzy Run", distance: 5, distance_unit: "km", location: "NYC", race_date: %{"day" => "1", "month" => "1", "year" => "2019"}}
+  @invalid_attrs %{title: "No Run"}
+
   describe "index" do
     test "shows races for signed in user", %{conn: conn} do
       user = user_fixture()
@@ -36,7 +40,51 @@ defmodule Racelist.RaceControllerTest do
       conn = conn
       |> assign(:user, user)
       |> get("/races/new")
+
       assert html_response(conn, 200) =~ "Add a race to your RaceList!"
     end 
+  end
+
+  describe "create race" do
+    test "redirects to index when data is valid", %{conn: conn} do
+      user = user_fixture()
+
+      conn = conn
+      |> assign(:user, user)
+      |> post(Routes.race_path(conn, :create), race: @create_attrs)
+    
+      assert redirected_to(conn) == Routes.race_path(conn, :index)
+
+      assert html_response(conn, 302) =~ "<html><body>You are being <a href=\"/races\">redirected</a>.</body></html>"
+    end
+
+    test "renders errors when data is invalid", %{conn: conn} do
+      user = user_fixture()
+  
+      conn = conn
+      |> assign(:user, user)
+      |> post(Routes.race_path(conn, :create), race: @invalid_attrs)
+  
+      assert html_response(conn, 200) =~ "Add a race to your RaceList!"
+    end
+  end
+
+  describe "edit race" do
+    setup [:create_race]
+  
+    test "renders form for editing chosen race", %{conn: conn, race: race} do
+      user = user_fixture()
+
+      conn = conn
+      |> assign(:user, user)
+      |> get(Routes.race_path(conn, :edit, race))
+
+      assert html_response(conn, 200) =~ "Edit Race"
+    end
+  end
+
+  defp create_race(_) do
+    race = race_fixture(@create_attrs)
+    {:ok, race: race}
   end
 end

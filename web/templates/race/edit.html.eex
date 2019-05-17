@@ -1,0 +1,28 @@
+<h5>Edit Race</h5>
+<%= form_for @changeset, race_path(@conn, :update, @race), fn f -> %>
+    <div class="form-group">
+        <div class="col s12"><label>
+          Race title: <%= text_input f, :title, placeholder: "NYC Marathon", class: "form-control" %>
+          <%= error_tag f, :title%>
+        </label></div>
+        <div class="col s6"><label>
+          Race distance: <%= select f, :distance, 1..100, class: "form-control" %>
+          <%= error_tag f, :distance%>
+        </label></div>
+        <div class="col s6"><label>
+          Distance Unit: <%= select f, :distance_unit, ["km", "mi"], class: "form-control" %>
+          <%= error_tag f, :distance_unit%>
+        </label></div>
+        <div class="col s12" id="date-select"><label>
+          Race date: <%= date_select f, :race_date, class: "form-control" %>
+          <%= error_tag f, :race_date%>
+        </label></div>
+        <div class="col s12"><label>
+          Race location: <%= text_input f, :location, placeholder: "NYC", class: "form-control" %>
+          <%= error_tag f, :location%>
+        </label></div>
+      </div>
+      <div class="col s12">
+        <%= submit "Save Race", class: "btn btn-primary" %>
+    </div>
+<% end %>
