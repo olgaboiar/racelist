@@ -4,6 +4,9 @@
   <%= for race <- @races do %>
     <li class="collection-item">
       <%= race.title %>
+      <div class="right">
+        <%= link "Edit", to: race_path(@conn, :edit, race)%>
+      </div>
     </li>
   <% end %>
 </ul>

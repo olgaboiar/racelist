@@ -68,4 +68,23 @@ defmodule Racelist.RaceControllerTest do
       assert html_response(conn, 200) =~ "Add a race to your RaceList!"
     end
   end
+
+  describe "edit race" do
+    setup [:create_race]
+  
+    test "renders form for editing chosen race", %{conn: conn, race: race} do
+      user = user_fixture()
+
+      conn = conn
+      |> assign(:user, user)
+      |> get(Routes.race_path(conn, :edit, race))
+
+      assert html_response(conn, 200) =~ "Edit Race"
+    end
+  end
+
+  defp create_race(_) do
+    race = race_fixture(@create_attrs)
+    {:ok, race: race}
+  end
 end

@@ -12,7 +12,7 @@ defmodule Racelist.Race do
       timestamps()
     end
   
-    def changeset(race, attrs) do
+    def changeset(race, attrs \\ %{}) do
       race
       |> cast(attrs, [:title, :distance, :race_date, :location, :b_q, :distance_unit])
       |> validate_required([:title, :distance, :distance_unit, :location, :race_date])

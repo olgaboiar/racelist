@@ -1,5 +1,6 @@
 defmodule Racelist.TestHelpers do
   alias Racelist.{Repo, User}
+  alias Racelist.{Repo, Race}
   use Hound.Helpers
   
   def user_fixture(attrs \\ %{}) do
@@ -18,6 +19,16 @@ defmodule Racelist.TestHelpers do
       |> Repo.insert()
   
     user
+  end
+
+  def race_fixture(attrs) do
+    params = attrs
+  
+    {:ok, race} =
+      Race.changeset(%Race{}, params)
+      |> Repo.insert()
+  
+    race
   end
 
   def sign_in_user() do
@@ -67,13 +78,13 @@ defmodule Racelist.TestHelpers do
   end
 
   def edit_race() do
-    edit_button = find_element(:xpath, "//button[@class='edit-race']")
+    edit_button = find_element(:link_text, "Edit")
     edit_button |> click()
 
     race_title = find_element(:xpath, "//input[@id='race_title']")
     race_title |> fill_field("NYC Marathon edited")
 
-    save_button = find_element(:xpath, "//button[@class='edit']")
+    save_button = find_element(:xpath, "//button[@type='submit']")
     save_button |> click()
   end
 end
