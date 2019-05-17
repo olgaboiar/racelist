@@ -1,8 +1,8 @@
-defmodule HoundTest do
+defmodule Racelist.MainPageTest do
   use ExUnit.Case
   use Racelist.FeatureCase
   use Hound.Helpers
-  
+
   describe "main page" do
     
     test "homepage loads successfully", _meta do
@@ -14,21 +14,8 @@ defmodule HoundTest do
   describe "signing in" do
     test "successfull signing in with Google", _meta do
       navigate_to("/")
-    
-      element = find_element(:id, "sign-in-link")
-      element |> click()
-      
-      email = find_element(:xpath, "//input[@aria-label='Email or phone']")
-      email |> fill_field(System.get_env("TEST_GMAIL"))
+      Racelist.TestHelpers.sign_in_user()
 
-      next_button = find_element(:xpath, ~s|//*[@id="identifierNext"]|)
-      next_button |> click()
-      
-      password = find_element(:xpath, "//input[@aria-label='Enter your password']")
-      password |> fill_field(System.get_env("TEST_GMAIL_PASSWORD"))
-
-      submit = find_element(:xpath, ~s|//*[@id="passwordNext"]|)
-      submit |> click()
       _navigation = find_element(:xpath, ~s|//*[@id="nav-mobile"]|)
 
       assert current_url() == "http://localhost:4001/#"
